@@ -1,23 +1,32 @@
 package com.example.sph.view_model
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.sph.database.RecordEntity
 import com.example.sph.model.Record
 import com.example.sph.repository.MobileVolumeRepository
 
-class MobileVolumeViewModel :ViewModel() {
+class MobileVolumeViewModel(application: Application) :AndroidViewModel(application) {
 
-    private val _record = MutableLiveData<List<Record>>().apply { value = emptyList() }
-    val record: LiveData<List<Record>> = _record
+
+    private var _record: LiveData<List<RecordEntity>>? = null
+    val record: LiveData<List<RecordEntity>>? = _record
 
     init {
-        loadRecords()
+        val repository = MobileVolumeRepository(application.applicationContext)
+        repository.getRecordData()
+        _record = repository.record
+
+        repository.getAllDataFromDB()
+
+
+       // loadRecords()
     }
 
     private fun loadRecords() {
-        val repository = MobileVolumeRepository.getInstance()
-        repository.getRecordData()
     }
 
 

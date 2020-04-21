@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.sph.R
+import com.example.sph.database.RecordEntity
 import com.example.sph.model.Record
 import com.example.sph.view_model.MobileVolumeViewModel
 
@@ -26,10 +27,10 @@ class MobileVolumeActivity : AppCompatActivity() {
     }
 
     private fun setObserver() {
-        mViewModel.record.observe(this,recordListObserver)
+        mViewModel.record?.observe(this,recordListObserver)
     }
 
-    private val recordListObserver = Observer<List<Record>>{
+    private val recordListObserver = Observer<List<RecordEntity>>{
         // todo set adapter
         Log.d("Record list", ""+it )
     }
