@@ -12,21 +12,25 @@ import com.example.sph.repository.MobileVolumeRepository
 class MobileVolumeViewModel(application: Application) :AndroidViewModel(application) {
 
 
-    private var _record: LiveData<List<RecordEntity>>? = null
-    val record: LiveData<List<RecordEntity>>? = _record
+   internal val _record: LiveData<List<Record>>
+    val repository = MobileVolumeRepository(application.applicationContext)
+
+    // val record: LiveData<List<RecordEntity>>? = _record
 
     init {
-        val repository = MobileVolumeRepository(application.applicationContext)
-        repository.getRecordData()
-        _record = repository.record
-
-        repository.getAllDataFromDB()
+        //  repository.getRecordData()
 
 
-       // loadRecords()
+      //  _record = repository.record
+
+        _record =  repository.getAllDataFromDB()
+
+
+       //
     }
 
-    private fun loadRecords() {
+      fun loadRecords() {
+          repository.getRecordData()
     }
 
 

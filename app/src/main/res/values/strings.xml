@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">SPH</string>
+    <string name="year_text">Year</string>
+    <string name="volume_text">Volume</string>
+
 </resources>
