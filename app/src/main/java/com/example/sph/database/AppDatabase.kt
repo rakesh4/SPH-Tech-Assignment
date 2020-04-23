@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.sph.model.Record
+import com.example.sph.utility.Constants
 
 @Database(entities = [Record::class], version = 1,exportSchema = false)
 abstract class AppDatabase : RoomDatabase(){
@@ -22,7 +22,7 @@ abstract class AppDatabase : RoomDatabase(){
                     if (INSTANCE == null) {
                         INSTANCE = Room.databaseBuilder(
                             context.applicationContext,
-                            AppDatabase::class.java, "record_database.db"
+                            AppDatabase::class.java, Constants.DATABASE_NAME
                         )
                             .build()
                     }

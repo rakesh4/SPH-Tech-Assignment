@@ -3,7 +3,6 @@ package com.example.sph.network
 import com.example.sph.model.MobileVolumeData
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Headers
 import retrofit2.http.Query
 
 interface ServiceApiInterface {

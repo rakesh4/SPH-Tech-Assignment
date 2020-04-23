@@ -4,33 +4,32 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.example.sph.database.RecordEntity
-import com.example.sph.model.Record
+import com.example.sph.database.Record
 import com.example.sph.repository.MobileVolumeRepository
+import com.example.sph.utility.Utils
 
-class MobileVolumeViewModel(application: Application) :AndroidViewModel(application) {
+class MobileVolumeViewModel(application: Application) : AndroidViewModel(application) {
+
+    private var mApplication: Application = application
+    internal val recordLiveData: LiveData<List<Record>>
+    private val mRepository = MobileVolumeRepository(application.applicationContext)
 
 
-   internal val _record: LiveData<List<Record>>
-    val repository = MobileVolumeRepository(application.applicationContext)
-
-    // val record: LiveData<List<RecordEntity>>? = _record
+    private val _onMessageError = MutableLiveData<Boolean>()
+    val onMessageError: LiveData<Boolean> = _onMessageError
 
     init {
-        //  repository.getRecordData()
-
-
-      //  _record = repository.record
-
-        _record =  repository.getAllDataFromDB()
-
-
-       //
+        recordLiveData = mRepository.getAllDataFromDB()
     }
 
-      fun loadRecords() {
-          repository.getRecordData()
+    fun loadRecords() {
+        if (Utils.isNetworkConnected(mApplication.applicationContext)) {
+            mRepository.getRecordData()
+
+        } else {
+            _onMessageError.value = true
+        }
+
     }
 
 

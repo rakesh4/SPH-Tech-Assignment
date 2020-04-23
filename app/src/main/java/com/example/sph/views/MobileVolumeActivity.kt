@@ -1,16 +1,18 @@
 package com.example.sph.views
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sph.R
-import com.example.sph.database.RecordEntity
-import com.example.sph.model.Record
+import com.example.sph.database.Record
 import com.example.sph.view_model.MobileVolumeViewModel
 import kotlinx.android.synthetic.main.activity_mobile_volume.*
+
 
 class MobileVolumeActivity : AppCompatActivity() {
 
@@ -39,19 +41,43 @@ class MobileVolumeActivity : AppCompatActivity() {
     }
 
     private fun setObserver() {
-        mViewModel._record.observe(this,recordListObserver)
-//        mViewModel._record.observe(this, object : Observer<List<Record>> {
-//            override fun onChanged(t: List<Record>) {
-//                setAdapter()
-//
-//            }
-//        });
+        mViewModel.recordLiveData.observe(this,recordListObserver)
+        mViewModel.onMessageError.observe(this,errorMessageObserver)
+        mAdapter.onQuarterDetail.observe(this,quarterDetailObserver)
+
     }
 
     private val recordListObserver = Observer<List<Record>>{
-        mRecordList = it.chunked(4)
-        mAdapter.update(mRecordList!!)
+        if (it.isNotEmpty()) {
+            progressBar.hide()
+            mRecordList = it.chunked(4)
+            mAdapter.update(mRecordList!!)
+        }
 
+
+
+    }
+
+    @SuppressLint("ShowToast")
+    private val errorMessageObserver = Observer<Boolean> {
+        if(it) Toast.makeText(this, R.string.no_internet_connection_text, Toast.LENGTH_LONG).show()
+        progressBar.hide()
+    }
+
+    private val quarterDetailObserver = Observer<String>{
+       showQuarterDetail(it)
+
+
+    }
+
+    private fun showQuarterDetail(message: String) {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(R.string.alert_title_text)
+        builder.setMessage(message)
+        builder.setPositiveButton(R.string.ok) { dialog, _ ->
+          dialog.dismiss()
+        }
+        builder.show()
     }
 
 

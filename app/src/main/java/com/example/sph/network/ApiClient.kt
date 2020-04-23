@@ -8,19 +8,19 @@ import retrofit2.converter.gson.GsonConverterFactory
 object ApiClient {
 
 
-    private val API_BASE_URL = "https://data.gov.sg/api/action/"
+    private const val API_BASE_URL = "https://data.gov.sg/api/action/"
 
     private var servicesApiInterface:ServiceApiInterface?=null
 
     fun build():ServiceApiInterface?{
-        var builder: Retrofit.Builder = Retrofit.Builder()
+        val builder: Retrofit.Builder = Retrofit.Builder()
             .baseUrl(API_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
 
-        var httpClient: OkHttpClient.Builder = OkHttpClient.Builder()
+        val httpClient: OkHttpClient.Builder = OkHttpClient.Builder()
         httpClient.addInterceptor(interceptor())
 
-        var retrofit: Retrofit = builder.client(httpClient.build()).build()
+        val retrofit: Retrofit = builder.client(httpClient.build()).build()
         servicesApiInterface = retrofit.create(
             ServiceApiInterface::class.java)
 

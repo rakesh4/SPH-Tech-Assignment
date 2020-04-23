@@ -1,6 +1,7 @@
 package com.example.sph.model
 
 
+import com.example.sph.database.Record
 import com.google.gson.annotations.SerializedName
 
 data class Result(
