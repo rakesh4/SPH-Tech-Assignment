@@ -10,7 +10,7 @@ import com.example.sph.utility.Utils
 
 class MobileVolumeViewModel(application: Application) : AndroidViewModel(application) {
 
-    private var mApplication: Application = application
+        private var mApplication: Application = application
     internal val recordLiveData: LiveData<List<Record>>
     private val mRepository = MobileVolumeRepository(application.applicationContext)
 
