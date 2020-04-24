@@ -4,17 +4,7 @@ package com.example.sph.model
 import com.example.sph.database.Record
 import com.google.gson.annotations.SerializedName
 
-data class Result(
-    @SerializedName("fields")
-    val fields: List<Field>,
-    @SerializedName("limit")
-    val limit: Int,
-    @SerializedName("_links")
-    val links: Links,
+class Result(
     @SerializedName("records")
-    val records: List<Record>,
-    @SerializedName("resource_id")
-    val resourceId: String,
-    @SerializedName("total")
-    val total: Int
+    val records: List<Record>
 )

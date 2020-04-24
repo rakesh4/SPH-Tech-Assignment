@@ -24,6 +24,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    buildTypes {
+        debug {
+           testCoverageEnabled =true
+        }
+    }
 }
 
 dependencies {
@@ -49,4 +55,11 @@ dependencies {
 
     implementation 'android.arch.persistence.room:runtime:1.1.1'
     kapt 'android.arch.persistence.room:compiler:1.1.1'
+
+    testImplementation "org.mockito:mockito-core:2.27.0"
+    testImplementation "android.arch.core:core-testing:2.1.0"
+    androidTestImplementation "org.mockito:mockito-core:2.27.0"
+
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.0'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:2.0'
 }

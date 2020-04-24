@@ -1,7 +1,10 @@
 package com.example.sph.repository
 
 import android.content.Context
+import android.nfc.Tag
+import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.sph.database.AppDatabase
 import com.example.sph.database.RecordDao
 import com.example.sph.model.MobileVolumeData
@@ -15,6 +18,7 @@ import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
 
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class MobileVolumeRepository(application: Context) {
 
     private val recordLiveData: LiveData<List<Record>>
@@ -38,13 +42,14 @@ class MobileVolumeRepository(application: Context) {
                 response: Response<MobileVolumeData>
             ) {
                 response.body()?.let {
-                    if (response.isSuccessful) {
+                    if (response.isSuccessful && response.body()!!.success ) {
                         storeDataIntoDB(response.body()!!.result.records)
                     }
                 }
             }
 
             override fun onFailure(call: Call<MobileVolumeData>, t: Throwable) {
+                Log.d("Repository",t.message)
             }
         })
 
