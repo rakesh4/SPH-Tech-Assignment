@@ -10,13 +10,12 @@ import com.example.sph.utility.Utils
 
 class MobileVolumeViewModel(application: Application) : AndroidViewModel(application) {
 
-        private var mApplication: Application = application
+    private var mApplication: Application = application
     internal val recordLiveData: LiveData<List<Record>>
     private val mRepository = MobileVolumeRepository(application.applicationContext)
 
-
     private val _onMessageError = MutableLiveData<Boolean>()
-    val onMessageError: LiveData<Boolean> = _onMessageError
+    internal val onMessageError: LiveData<Boolean> = _onMessageError
 
     init {
         recordLiveData = mRepository.getAllDataFromDB()
@@ -31,8 +30,4 @@ class MobileVolumeViewModel(application: Application) : AndroidViewModel(applica
         }
 
     }
-
-
-
-
 }

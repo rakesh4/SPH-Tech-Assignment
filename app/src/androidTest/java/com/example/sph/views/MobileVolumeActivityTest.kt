@@ -15,14 +15,14 @@ import org.junit.runner.RunWith
 
 
 @RunWith(AndroidJUnit4ClassRunner::class)
-class MobileVolumeActivityTest{
+class MobileVolumeActivityTest {
 
     @get:Rule
     val activityRule = ActivityScenarioRule(MobileVolumeActivity::class.java)
 
     @Test
     fun test_activity_in_view() {
-        val activityScenario = ActivityScenario.launch(MobileVolumeActivity::class.java)
+        ActivityScenario.launch(MobileVolumeActivity::class.java)
         onView(withId(R.id.root_main)).check(matches(isDisplayed()))
     }
 
@@ -35,32 +35,32 @@ class MobileVolumeActivityTest{
     fun test_selectListItem() {
 
         // Image view click perform
-        onView(withId(R.id.recyclerView)).perform(actionOnItemAtPosition<MobileVolumeAdapter.ViewHolder>(3, MyViewAction.clickChildViewWithId(R.id.iv_decrease)))
+        onView(withId(R.id.recyclerView)).perform(
+            actionOnItemAtPosition<MobileVolumeAdapter.ViewHolder>(
+                3,
+                ChildViewAction.clickChildViewWithId(R.id.iv_decrease)
+            )
+        )
     }
 
     @Test
-    fun test_showDialog(){
+    fun test_showDialog() {
 
         onView(withId(R.id.recyclerView))
             .perform(actionOnItemAtPosition<MobileVolumeAdapter.ViewHolder>(3, click()))
 
-        onView(withId(R.id.recyclerView)).perform(actionOnItemAtPosition<MobileVolumeAdapter.ViewHolder>(3, MyViewAction.clickChildViewWithId(R.id.iv_decrease)))
+        onView(withId(R.id.recyclerView)).perform(
+            actionOnItemAtPosition<MobileVolumeAdapter.ViewHolder>(
+                3,
+                ChildViewAction.clickChildViewWithId(R.id.iv_decrease)
+            )
+        )
 
         // tittle
         onView(withText(R.string.alert_title_text)).check(matches(isDisplayed()))
 
         // ok click perform
         onView(withText(R.string.ok)).perform(click())
-
     }
-
-//    @Test
-//    fun test_showToast(){
-//        onView(withText(R.string.no_internet_connection_text)).inRoot(ToastMatcher())
-//            .check(matches(isDisplayed()))
-//    }
-
-
-
 
 }

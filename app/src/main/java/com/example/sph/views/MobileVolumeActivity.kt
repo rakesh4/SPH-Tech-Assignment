@@ -41,13 +41,13 @@ class MobileVolumeActivity : AppCompatActivity() {
     }
 
     private fun setObserver() {
-        mViewModel.recordLiveData.observe(this,recordListObserver)
-        mViewModel.onMessageError.observe(this,errorMessageObserver)
-        mAdapter.onQuarterDetail.observe(this,quarterDetailObserver)
+        mViewModel.recordLiveData.observe(this, recordListObserver)
+        mViewModel.onMessageError.observe(this, errorMessageObserver)
+        mAdapter.onQuarterDetail.observe(this, quarterDetailObserver)
 
     }
 
-    private val recordListObserver = Observer<List<Record>>{
+    private val recordListObserver = Observer<List<Record>> {
         if (it.isNotEmpty()) {
             progressBar.hide()
             mRecordList = it.chunked(4)
@@ -55,17 +55,16 @@ class MobileVolumeActivity : AppCompatActivity() {
         }
 
 
-
     }
 
     @SuppressLint("ShowToast")
     private val errorMessageObserver = Observer<Boolean> {
-        if(it) Toast.makeText(this, R.string.no_internet_connection_text, Toast.LENGTH_LONG).show()
+        if (it) Toast.makeText(this, R.string.no_internet_connection_text, Toast.LENGTH_LONG).show()
         progressBar.hide()
     }
 
-    private val quarterDetailObserver = Observer<String>{
-       showQuarterDetail(it)
+    private val quarterDetailObserver = Observer<String> {
+        showQuarterDetail(it)
 
 
     }
@@ -75,10 +74,8 @@ class MobileVolumeActivity : AppCompatActivity() {
         builder.setTitle(R.string.alert_title_text)
         builder.setMessage(message)
         builder.setPositiveButton(R.string.ok) { dialog, _ ->
-          dialog.dismiss()
+            dialog.dismiss()
         }
         builder.show()
     }
-
-
 }

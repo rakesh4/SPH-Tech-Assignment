@@ -1,10 +1,8 @@
 package com.example.sph.repository
 
 import android.content.Context
-import android.nfc.Tag
 import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.example.sph.database.AppDatabase
 import com.example.sph.database.RecordDao
 import com.example.sph.model.MobileVolumeData
@@ -42,18 +40,16 @@ class MobileVolumeRepository(application: Context) {
                 response: Response<MobileVolumeData>
             ) {
                 response.body()?.let {
-                    if (response.isSuccessful && response.body()!!.success ) {
+                    if (response.isSuccessful && response.body()!!.success) {
                         storeDataIntoDB(response.body()!!.result.records)
                     }
                 }
             }
 
             override fun onFailure(call: Call<MobileVolumeData>, t: Throwable) {
-                Log.d("Repository",t.message)
+                Log.d("Repository", t.message)
             }
         })
-
-
     }
 
     // insert data into local db
@@ -68,6 +64,5 @@ class MobileVolumeRepository(application: Context) {
     fun getAllDataFromDB(): LiveData<List<Record>> {
         return recordLiveData
     }
-
 
 }

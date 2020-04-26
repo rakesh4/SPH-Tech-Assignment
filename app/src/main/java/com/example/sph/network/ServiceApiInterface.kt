@@ -9,5 +9,6 @@ interface ServiceApiInterface {
 
     @GET("datastore_search")
     fun getRecordList(
-        @Query("resource_id") resourceId: String, @Query("limit") pageSize: Int): Call<MobileVolumeData>
+        @Query("resource_id") resourceId: String, @Query("limit") pageSize: Int
+    ): Call<MobileVolumeData>
 }

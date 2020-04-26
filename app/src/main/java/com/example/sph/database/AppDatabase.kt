@@ -6,8 +6,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.sph.utility.Constants
 
-@Database(entities = [Record::class], version = 1,exportSchema = false)
-abstract class AppDatabase : RoomDatabase(){
+@Database(entities = [Record::class], version = 1, exportSchema = false)
+abstract class AppDatabase : RoomDatabase() {
 
     abstract fun recordDao(): RecordDao
 

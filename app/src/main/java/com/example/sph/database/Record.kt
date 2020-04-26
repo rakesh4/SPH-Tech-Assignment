@@ -8,6 +8,7 @@ import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "records")
 class Record(
+
     @PrimaryKey(autoGenerate = false)
     @ColumnInfo(name = "id")
     @SerializedName("_id")
@@ -20,6 +21,5 @@ class Record(
     @ColumnInfo(name = "volumeOfMobileData")
     @SerializedName("volume_of_mobile_data")
     val volumeOfMobileData: String
-
-
 )
+

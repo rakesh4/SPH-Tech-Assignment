@@ -41,10 +41,11 @@ class MobileVolumeAdapter(private var recordList: List<List<Record>>?) :
         // Display image if any quarter decreased in the year
         if (Utils.isVolumeDecreased(records)) {
             holder.decreaseVolumeImageView.visibility = View.VISIBLE
-        }else{
+        } else {
             holder.decreaseVolumeImageView.visibility = View.GONE
         }
 
+        // show dialog to display decreased quarter detail
         holder.decreaseVolumeImageView.setOnClickListener {
             _onQuarterDetail.value = Utils.getDecreasedVolumeDetail(records)
         }

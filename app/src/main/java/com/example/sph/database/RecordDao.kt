@@ -13,5 +13,6 @@ interface RecordDao {
     fun insertAllRecords(recordEntities: List<Record>)
 
     @Query("SELECT * from records WHERE quarter BETWEEN :start AND :end")
-    fun getAllRecords(start:String, end:String): LiveData<List<Record>>
+    fun getAllRecords(start: String, end: String): LiveData<List<Record>>
+
 }
