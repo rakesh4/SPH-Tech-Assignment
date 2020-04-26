@@ -80,7 +80,6 @@ class UtilsTest {
         val quarter4 =
             recordList[3].quarter + " has less volume as compare with " + recordList[2].quarter + "\n\n" + recordList[2].quarter + " - " + recordList[2].volumeOfMobileData + "\n" + recordList[3].quarter + " - " + recordList[3].volumeOfMobileData
         Assert.assertEquals(quarter4, Utils.getDecreasedVolumeDetail(recordList))
-
     }
 
 }

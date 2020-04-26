@@ -10,9 +10,9 @@ class ResultTest {
     fun testResultValue() {
         val recordList: List<Record> = listOf(Record(2, "2009-Q2", "0.3412e23"))
 
-        assertEquals(recordList[0].id, 1)
-        assertEquals(recordList[0].quarter, "2009-Q1")
-        assertEquals(recordList[0].volumeOfMobileData, "0.1212e23")
+        assertEquals(recordList[0].id, 2)
+        assertEquals(recordList[0].quarter, "2009-Q2")
+        assertEquals(recordList[0].volumeOfMobileData, "0.3412e23")
     }
 
     @Test

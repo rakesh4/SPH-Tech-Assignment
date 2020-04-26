@@ -15,7 +15,6 @@ class RecordTest {
         assertEquals(result.id, 1)
         assertEquals(result.quarter, "2008-Q1")
         assertEquals(result.volumeOfMobileData, "1.454544")
-
     }
 
     @Test

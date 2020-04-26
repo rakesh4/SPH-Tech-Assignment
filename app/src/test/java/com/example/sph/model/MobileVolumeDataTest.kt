@@ -17,6 +17,5 @@ class MobileVolumeDataTest {
         assertEquals(data.result.records[0].id, 2)
         assertEquals(data.result.records[0].quarter, "2009-Q2")
         assertEquals(data.result.records[0].volumeOfMobileData, "0.3412e23")
-
     }
 }
