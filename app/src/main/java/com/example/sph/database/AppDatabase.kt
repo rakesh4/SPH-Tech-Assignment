@@ -31,8 +31,4 @@ abstract class AppDatabase : RoomDatabase(){
             return INSTANCE
         }
     }
-
-   fun  getContext(): Context{
-        return getContext().applicationContext
-    }
 }

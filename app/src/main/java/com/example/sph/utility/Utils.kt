@@ -8,9 +8,9 @@ import com.example.sph.database.Record
 
 
 @Suppress("DEPRECATION", "RECEIVER_NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-class Utils {
+object Utils {
 
-    companion object {
+
 
 
         // get year by substring quarter
@@ -73,6 +73,6 @@ class Utils {
             }
             return false
         }
-    }
+
 
 }

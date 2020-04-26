@@ -30,6 +30,10 @@ android {
            testCoverageEnabled =true
         }
     }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
 }
 
 dependencies {
@@ -63,6 +67,8 @@ dependencies {
 
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:2.0'
     androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:2.0'
+
+    testImplementation "io.mockk:mockk:1.9.3"
 
 
 
